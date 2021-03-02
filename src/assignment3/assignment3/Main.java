@@ -37,15 +37,17 @@ public class Main {
 		}
 		initialize();
 		
-		parse(kb);
+		printLadder(parse(kb));
 		
 		// TODO methods to read in words, output ladder
 		
 		//this is how you move through the dictionary
+		/*
 		Iterator<String> it = dict.iterator();
 		for(int i = 0; i < 10; i++) {
 			System.out.println(it.next());
 		}
+		*/
 	}
 	
 	public static void initialize() {
@@ -64,13 +66,27 @@ public class Main {
 		
 		String input = keyboard.nextLine();
 		ArrayList<String> list = new ArrayList<String>();
-		if(input.equals("quit")) {
+		if(input.equals("/quit")) {
 			return list;
 		}
 		else {
-			String[] strArr = input.split(" ");
-			list.add(strArr[0]);
-			list.add(strArr[1]);
+			int startOfWhitespace = -1;
+			int endOfWhitespace = -1;
+			boolean whitespaceFlag = false;
+			for(int i = 0; i < input.length(); i++) {
+				if(!whitespaceFlag && (input.toLowerCase().charAt(i) <= 96 || input.toLowerCase().charAt(i) >= 123)) {
+					whitespaceFlag = true;
+					startOfWhitespace = i;
+					//System.out.println("Start of whitespace: " + i);
+				}
+				else if(whitespaceFlag && (input.toLowerCase().charAt(i) >= 96 && input.toLowerCase().charAt(i) <= 123)) {
+					endOfWhitespace = i;
+					whitespaceFlag = false;
+					//System.out.println("End of whitespace: " + i);
+				}
+			}
+			list.add(input.toLowerCase().substring(0, startOfWhitespace));
+			list.add(input.toLowerCase().substring(endOfWhitespace));
 			return list;
 		}
 	}
@@ -88,11 +104,15 @@ public class Main {
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
 		
-    	//Breadth First Search, must use recursion
-    	
+    	//Breadth First Search
+    	ArrayList<String> returnList = new ArrayList<String>();
+    	ArrayList<String> checkedList = new ArrayList<String>();
+    	returnList.add(start);
+    
+    	Iterator<String> iterator = dict.iterator();
 		// TODO some code
 		
-		return null; // replace this line later with real return
+		return returnList;
 	}
     
 	
