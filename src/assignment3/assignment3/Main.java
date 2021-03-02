@@ -37,7 +37,11 @@ public class Main {
 		}
 		initialize();
 		
+		parse(kb);
+		
 		// TODO methods to read in words, output ladder
+		
+		//this is how you move through the dictionary
 		Iterator<String> it = dict.iterator();
 		for(int i = 0; i < 10; i++) {
 			System.out.println(it.next());
@@ -57,8 +61,18 @@ public class Main {
 	 * If command is /quit, return empty ArrayList. 
 	 */
 	public static ArrayList<String> parse(Scanner keyboard) {
-		// TO DO
-		return null;
+		
+		String input = keyboard.nextLine();
+		ArrayList<String> list = new ArrayList<String>();
+		if(input.equals("quit")) {
+			return list;
+		}
+		else {
+			String[] strArr = input.split(" ");
+			list.add(strArr[0]);
+			list.add(strArr[1]);
+			return list;
+		}
 	}
 	
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
@@ -83,7 +97,9 @@ public class Main {
     
 	
 	public static void printLadder(ArrayList<String> ladder) {
-		
+		for(int i = 0; i < ladder.size(); i++) {
+			System.out.println(ladder.get(i));
+		}
 	}
 	// TODO
 	// Other private static methods here
