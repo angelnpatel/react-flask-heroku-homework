@@ -20,6 +20,7 @@ import java.io.*;
 public class Main {
 	
 	// static variables and constants only here.
+	private static Set<String> dict;
 	
 	public static void main(String[] args) throws Exception {
 		
@@ -37,12 +38,17 @@ public class Main {
 		initialize();
 		
 		// TODO methods to read in words, output ladder
+		Iterator<String> it = dict.iterator();
+		for(int i = 0; i < 10; i++) {
+			System.out.println(it.next());
+		}
 	}
 	
 	public static void initialize() {
 		// initialize your static variables or constants here.
 		// We will call this method before running our JUNIT tests.  So call it 
 		// only once at the start of main.
+		dict = makeDictionary();
 	}
 	
 	/**
@@ -57,6 +63,8 @@ public class Main {
 	
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
 		
+		//Depth first Search, must use recursion
+		
 		// Returned list should be ordered start to end.  Include start and end.
 		// If ladder is empty, return list with just start and end.
 		// TODO some code
@@ -66,6 +74,8 @@ public class Main {
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
 		
+    	//Breadth First Search, must use recursion
+    	
 		// TODO some code
 		
 		return null; // replace this line later with real return
